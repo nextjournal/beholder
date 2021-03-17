@@ -1,4 +1,7 @@
 # directory-watcher
+
+[![Clojars Project](https://img.shields.io/clojars/v/com.nextjournal/directory-watcher.svg)](https://clojars.org/com.nextjournal/directory-watcher)
+
 A fast directory watcher in Clojure using
 [directory-watcher](https://github.com/gmethvin/directory-watcher). From
 its README:
