@@ -1,1 +1,3 @@
-{:deps {io.methvin/directory-watcher {:mvn/version "0.15.0"}}}
+{:deps {io.methvin/directory-watcher {:mvn/version "0.15.0"}}
+ :aliases {:release {:extra-deps {applied-science/deps-library {:mvn/version "0.4.0"}}
+                     :main-opts ["-m" "applied-science.deps-library"]}}}
