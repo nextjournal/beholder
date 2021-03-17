@@ -1,4 +1,6 @@
 .cpcache/
 .lsp/
 .nrepl-port
+pom.xml
+target/
 
