@@ -2,9 +2,13 @@
 
 [![Clojars Project](https://img.shields.io/clojars/v/com.nextjournal/directory-watcher.svg)](https://clojars.org/com.nextjournal/directory-watcher)
 
-A fast directory watcher in Clojure using
-[directory-watcher](https://github.com/gmethvin/directory-watcher). From
-its README:
+The Clojure directory watcher from
+[krell](https://github.com/vouch-opensource/krell/) as a standalone
+library.
+
+Built using the Java library
+[directory-watcher](https://github.com/gmethvin/directory-watcher).
+From its README:
 
 > A directory watcher utility for JDK 8+ that aims to provide accurate
 > and efficient recursive watching for Linux, macOS and Windows. In
@@ -16,10 +20,7 @@ its README:
 > logging, which can be disabled by passing a NOPLogger in the
 > builder) and jna (for the macOS watcher implementation).
 
-Developed by [David Nolen](https://github.com/swannodette) & extracted
-from
-[krell](https://github.com/vouch-opensource/krell/blob/2923683445c30f803d7bcc5f7f862686c90c2612/src/krell/watcher.clj).
-
+Developed by [David Nolen](https://github.com/swannodette).
 
 ## Usage
 ```clojure
