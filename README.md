@@ -29,7 +29,7 @@ Pass a callback function and paths to `watch`.
 
 ```clojure
 (require '[nextjournal.beholder :as beholder]
-(def beholder
+(def watcher
   (beholder/watch prn "src"))
 
 (beholder/stop watcher)
