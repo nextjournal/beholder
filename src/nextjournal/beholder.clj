@@ -1,4 +1,4 @@
-(ns nextjournal.directory-watcher
+(ns nextjournal.beholder
   (:import [io.methvin.watcher DirectoryChangeEvent DirectoryChangeEvent$EventType
             DirectoryChangeListener DirectoryWatcher]
            [java.nio.file Paths]))

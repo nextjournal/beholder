@@ -1,3 +1,3 @@
 {:group-id "com.nextjournal"
- :artifact-id "directory-watcher"
- :scm-url "https://github.com/nextjournal/directory-watcher"}
+ :artifact-id "beholder"
+ :scm-url "https://github.com/nextjournal/beholder"}
