@@ -17,28 +17,41 @@
 (defn to-path [& args]
   (Paths/get ^String (first args) (into-array String (rest args))))
 
-(defn create [cb paths]
+(defn create
+  "Creates a watcher taking a callback function `cb` that will be invoked
+  whenever a file in one of the `paths` chages.
+
+  Not meant to be called directly but use `watch` or `watch-blocking` instead."
+  [cb paths]
   (-> (DirectoryWatcher/builder)
       (.paths (map to-path paths))
       (.listener (fn->listener cb))
       (.build)))
 
-(defn watch [cb & paths]
+(defn watch
+  "Creates a directory watcher that will invoke the callback function `cb` whenever
+  a file event in one of the `paths` occurs. Watching will happen asynchronously using
+  a `ForkJoinPool.commonPool()`.
+
+  Returns a directory watcher that can be passed to `stop` to stop the watch."
+  [cb & paths]
   (doto (create cb paths)
     (.watchAsync)))
 
-(defn watch-blocking [cb & paths]
+(defn watch-blocking
+  "Blocking version of `watch`."
+  [cb & paths]
   (doto (create cb paths)
     (.watch)))
 
-(defn stop [^DirectoryWatcher watcher]
+(defn stop
+  "Stops the watch for a given `watcher`."
+  [^DirectoryWatcher watcher]
   (.close watcher))
 
 (comment
   (def watcher
     (watch prn "src"))
-
-  (.watchAsync watcher)
 
   (stop watcher)
 
