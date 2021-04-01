@@ -50,9 +50,11 @@
   (.close watcher))
 
 (comment
+  ;; to start a watch with a callback function and paths to watch
   (def watcher
     (watch prn "src"))
 
+  ;; stop the watch again using the return value from watch
   (stop watcher)
 
   )
