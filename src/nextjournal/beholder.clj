@@ -3,7 +3,7 @@
             DirectoryChangeListener DirectoryWatcher]
            [java.nio.file Paths]))
 
-(defn fn->listener ^DirectoryChangeListener [f]
+(defn- fn->listener ^DirectoryChangeListener [f]
   (reify
     DirectoryChangeListener
     (onEvent [this e]
@@ -14,10 +14,10 @@
           DirectoryChangeEvent$EventType/DELETE   (f {:type :delete :path path})
           DirectoryChangeEvent$EventType/OVERFLOW (f {:type :overflow :path path}))))))
 
-(defn to-path [& args]
+(defn- to-path [& args]
   (Paths/get ^String (first args) (into-array String (rest args))))
 
-(defn create
+(defn- create
   "Creates a watcher taking a callback function `cb` that will be invoked
   whenever a file in one of the `paths` chages.
 
@@ -30,8 +30,7 @@
 
 (defn watch
   "Creates a directory watcher that will invoke the callback function `cb` whenever
-  a file event in one of the `paths` occurs. Watching will happen asynchronously using
-  a `ForkJoinPool.commonPool()`.
+  a file event in one of the `paths` occurs. Watching will happen asynchronously.
 
   Returns a directory watcher that can be passed to `stop` to stop the watch."
   [cb & paths]
