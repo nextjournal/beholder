@@ -22,9 +22,11 @@ From its README:
 > logging, which can be disabled by passing a NOPLogger in the
 > builder) and jna (for the macOS watcher implementation).
 
-Developed by [David Nolen](https://github.com/swannodette).
+Initial development by [David Nolen](https://github.com/swannodette).
 
 ## Usage
+Pass a callback function and paths to `watch`.
+
 ```clojure
 (require '[nextjournal.beholder :as beholder]
 (def beholder
@@ -32,3 +34,13 @@ Developed by [David Nolen](https://github.com/swannodette).
 
 (beholder/stop watcher)
 ```
+
+Whenever a file changes, your callback function will be invoked with a
+map with `:type` and `:path` keys. Possible values for `:type` are
+`:create`, `:modify`, `:delete` or `:overflow`.
+
+## License
+
+Copyright © 2021 Nextjournal
+
+Distributed under the MIT License.
