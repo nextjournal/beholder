@@ -28,8 +28,7 @@ Developed by [David Nolen](https://github.com/swannodette).
 ```clojure
 (require '[nextjournal.beholder :as beholder]
 (def beholder
-  (doto (beholder/create prn "src")
-    beholder/watch))
+  (beholder/watch prn "src"))
 
 (beholder/stop watcher)
 ```

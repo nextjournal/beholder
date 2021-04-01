@@ -17,23 +17,29 @@
 (defn to-path [& args]
   (Paths/get ^String (first args) (into-array String (rest args))))
 
-(defn create [cb & paths]
+(defn create [cb paths]
   (-> (DirectoryWatcher/builder)
       (.paths (map to-path paths))
       (.listener (fn->listener cb))
       (.build)))
 
-(defn watch [^DirectoryWatcher watcher]
-  (.watchAsync watcher))
+(defn watch [cb & paths]
+  (doto (create cb paths)
+    (.watchAsync)))
+
+(defn watch-blocking [cb & paths]
+  (doto (create cb paths)
+    (.watch)))
 
 (defn stop [^DirectoryWatcher watcher]
   (.close watcher))
 
 (comment
   (def watcher
-    (create prn "src"))
+    (watch prn "src"))
 
-  (watch watcher)
+  (.watchAsync watcher)
+
   (stop watcher)
 
   )
