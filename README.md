@@ -28,7 +28,7 @@ Initial development by [David Nolen](https://github.com/swannodette).
 Pass a callback function and paths to `watch`.
 
 ```clojure
-(require '[nextjournal.beholder :as beholder]
+(require '[nextjournal.beholder :as beholder])
 (def watcher
   (beholder/watch prn "src"))
 
