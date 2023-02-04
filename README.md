@@ -43,4 +43,4 @@ map with `:type` and `:path` keys. Possible values for `:type` are
 
 Copyright © 2021 Nextjournal
 
-Distributed under the MIT License.
+Distributed under the EPL-1.0 License.
