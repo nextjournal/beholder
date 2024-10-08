@@ -19,7 +19,7 @@
 
 (defn- create
   "Creates a watcher taking a callback function `cb` that will be invoked
-  whenever a file in one of the `paths` chages.
+  whenever a file in one of the `paths` changes.
 
   Not meant to be called directly but use `watch` or `watch-blocking` instead."
   [cb paths]
