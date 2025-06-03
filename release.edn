@@ -1,5 +1,6 @@
 {:group-id "com.nextjournal"
  :artifact-id "beholder"
+ :scm-url "https://github.com/nextjournal/beholder"
  :scm {:url "https://github.com/nextjournal/beholder"
        :connection "scm:git:git@github.com:nextjournal/beholder.git"
        :developerConnection "scm:git:git@github.com:nextjournal/beholder.git"}
