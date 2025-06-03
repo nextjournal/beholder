@@ -3,6 +3,8 @@
             DirectoryChangeListener DirectoryWatcher]
            [java.nio.file Paths]))
 
+(set! *warn-on-reflection* true)
+
 (defn- fn->listener ^DirectoryChangeListener [f]
   (reify
     DirectoryChangeListener
@@ -22,7 +24,7 @@
   whenever a file in one of the `paths` chages.
 
   Not meant to be called directly but use `watch` or `watch-blocking` instead."
-  [cb paths]
+  ^DirectoryWatcher [cb paths]
   (-> (DirectoryWatcher/builder)
       (.paths (map to-path paths))
       (.listener (fn->listener cb))
