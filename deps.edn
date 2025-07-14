@@ -1,3 +1,7 @@
 {:deps {io.methvin/directory-watcher {:mvn/version "0.17.3"}}
  :aliases {:release {:extra-deps {applied-science/deps-library {:mvn/version "0.4.0"}}
-                     :main-opts ["-m" "applied-science.deps-library"]}}}
+                     :main-opts ["-m" "applied-science.deps-library"]}
+           :build {:deps {io.github.clojure/tools.build {:git/tag "v0.10.9"
+                                                         :git/sha "e405aac"}
+                          slipset/deps-deploy {:mvn/version "0.2.2"}}
+                   :ns-default build}}}
