@@ -4,4 +4,4 @@
  :scm {:url "https://github.com/nextjournal/beholder"
        :connection "scm:git:git@github.com:nextjournal/beholder.git"
        :developerConnection "scm:git:git@github.com:nextjournal/beholder.git"}
- :version "1.0.2"}
+ :version "1.0.3"}
