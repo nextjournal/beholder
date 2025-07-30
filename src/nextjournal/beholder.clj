@@ -1,6 +1,7 @@
 (ns nextjournal.beholder
   (:import [io.methvin.watcher DirectoryChangeEvent DirectoryChangeEvent$EventType
             DirectoryChangeListener DirectoryWatcher]
+           [io.methvin.watcher.hashing FileHasher]
            [java.nio.file Paths]))
 
 (set! *warn-on-reflection* true)
@@ -26,6 +27,7 @@
   Not meant to be called directly but use `watch` or `watch-blocking` instead."
   ^DirectoryWatcher [cb paths]
   (-> (DirectoryWatcher/builder)
+      (.fileHasher FileHasher/LAST_MODIFIED_TIME)
       (.paths (map to-path paths))
       (.listener (fn->listener cb))
       (.build)))
