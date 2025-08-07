@@ -20,14 +20,15 @@
   (-> resp
       (update :path fs/path)
       (update :type (fn [k]
-                      (if (#{:chmod :write} k) :modify
+                      (if (#{:chmod :write
+                             :write|chmod} k) :modify
                           k)))))
 
 (defn watch [cb & paths]
   @load-pod
   (let [cb (comp cb normalize-response)
         watch (requiring-resolve 'pod.babashka.fswatcher/watch)]
-    (->Watchers (mapv #(watch % cb) paths))))
+    (->Watchers (mapv #(watch % cb {}) paths))))
 
 (defn stop [w]
   (-stop w))
