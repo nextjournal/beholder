@@ -1,6 +1,8 @@
 (ns nextjournal.beholder
+  (:require [clojure.stacktrace :as st :refer [print-stack-trace]])
   (:import [io.methvin.watcher DirectoryChangeEvent DirectoryChangeEvent$EventType
             DirectoryChangeListener DirectoryWatcher]
+           [java.util.concurrent CompletableFuture]
            [java.nio.file Paths]))
 
 (set! *warn-on-reflection* true)
@@ -8,6 +10,9 @@
 (defn- fn->listener ^DirectoryChangeListener [f]
   (reify
     DirectoryChangeListener
+    (onException [this e]
+      (print-stack-trace e)
+      (flush))
     (onEvent [this e]
       (let [path (.path ^DirectoryChangeEvent e)]
         (condp = (. ^DirectoryChangeEvent e eventType)
@@ -36,8 +41,12 @@
 
   Returns a directory watcher that can be passed to `stop` to stop the watch."
   [cb & paths]
-  (doto (create cb paths)
-    (.watchAsync)))
+  (-> (create cb paths)
+      .watchAsync
+      (CompletableFuture/.exceptionally
+        (fn [^java.lang.Throwable e]
+          (print-stack-trace (st/root-cause e))
+          (flush)))))
 
 (defn watch-blocking
   "Blocking version of `watch`."
